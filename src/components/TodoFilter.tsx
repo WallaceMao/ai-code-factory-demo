@@ -6,13 +6,14 @@ interface Props {
   activeCount: number;
   completedCount: number;
   onClearCompleted: () => void;
+  labels: {
+    labels: Record<FilterType, string>;
+    activeCount: (count: number) => string;
+    clearCompleted: string;
+  };
 }
 
-const filters: { key: FilterType; label: string }[] = [
-  { key: 'all', label: '全部' },
-  { key: 'active', label: '进行中' },
-  { key: 'completed', label: '已完成' },
-];
+const filters: FilterType[] = ['all', 'active', 'completed'];
 
 export default function TodoFilter({
   filter,
@@ -20,24 +21,25 @@ export default function TodoFilter({
   activeCount,
   completedCount,
   onClearCompleted,
+  labels,
 }: Props) {
   return (
     <div className="todo-filter">
-      <span className="todo-count">{activeCount} 个待办</span>
+      <span className="todo-count">{labels.activeCount(activeCount)}</span>
       <div className="filter-buttons">
-        {filters.map(f => (
+        {filters.map(key => (
           <button
-            key={f.key}
-            onClick={() => onChange(f.key)}
-            className={`filter-btn ${filter === f.key ? 'active' : ''}`}
+            key={key}
+            onClick={() => onChange(key)}
+            className={`filter-btn ${filter === key ? 'active' : ''}`}
           >
-            {f.label}
+            {labels.labels[key]}
           </button>
         ))}
       </div>
       {completedCount > 0 && (
         <button onClick={onClearCompleted} className="clear-btn">
-          清除已完成
+          {labels.clearCompleted}
         </button>
       )}
     </div>

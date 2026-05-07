@@ -6,11 +6,18 @@ interface Props {
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
   onEdit: (id: string, text: string) => void;
+  labels: {
+    emptyState: string;
+    item: {
+      editTitle: string;
+      deleteTitle: string;
+    };
+  };
 }
 
-export default function TodoList({ todos, onToggle, onDelete, onEdit }: Props) {
+export default function TodoList({ todos, onToggle, onDelete, onEdit, labels }: Props) {
   if (todos.length === 0) {
-    return <div className="empty-state">暂无任务</div>;
+    return <div className="empty-state">{labels.emptyState}</div>;
   }
 
   return (
@@ -22,6 +29,7 @@ export default function TodoList({ todos, onToggle, onDelete, onEdit }: Props) {
           onToggle={onToggle}
           onDelete={onDelete}
           onEdit={onEdit}
+          labels={labels.item}
         />
       ))}
     </ul>

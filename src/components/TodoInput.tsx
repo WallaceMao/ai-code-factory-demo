@@ -2,9 +2,13 @@ import { useState, FormEvent } from 'react';
 
 interface Props {
   onAdd: (text: string) => void;
+  labels: {
+    placeholder: string;
+    addButton: string;
+  };
 }
 
-export default function TodoInput({ onAdd }: Props) {
+export default function TodoInput({ onAdd, labels }: Props) {
   const [text, setText] = useState('');
 
   function handleSubmit(e: FormEvent) {
@@ -19,11 +23,11 @@ export default function TodoInput({ onAdd }: Props) {
         type="text"
         value={text}
         onChange={e => setText(e.target.value)}
-        placeholder="添加新任务..."
+        placeholder={labels.placeholder}
         className="todo-input"
       />
       <button type="submit" className="add-btn" disabled={!text.trim()}>
-        添加
+        {labels.addButton}
       </button>
     </form>
   );

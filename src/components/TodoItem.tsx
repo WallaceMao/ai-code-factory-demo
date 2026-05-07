@@ -6,9 +6,13 @@ interface Props {
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
   onEdit: (id: string, text: string) => void;
+  labels: {
+    editTitle: string;
+    deleteTitle: string;
+  };
 }
 
-export default function TodoItem({ todo, onToggle, onDelete, onEdit }: Props) {
+export default function TodoItem({ todo, onToggle, onDelete, onEdit, labels }: Props) {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(todo.text);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -66,14 +70,14 @@ export default function TodoItem({ todo, onToggle, onDelete, onEdit }: Props) {
         <button
           onClick={() => setIsEditing(true)}
           className="action-btn edit"
-          title="编辑"
+          title={labels.editTitle}
         >
           ✎
         </button>
         <button
           onClick={() => onDelete(todo.id)}
           className="action-btn delete"
-          title="删除"
+          title={labels.deleteTitle}
         >
           ×
         </button>
