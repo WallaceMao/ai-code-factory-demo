@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 import TodoItem from './TodoItem'
 import { Todo } from '../types/todo'
+import { translations } from '../i18n'
 
 const mockTodo: Todo = {
   id: '1',
@@ -10,6 +11,8 @@ const mockTodo: Todo = {
   completed: false,
   createdAt: Date.now(),
 }
+
+const labels = translations.zh.item
 
 describe('TodoItem', () => {
   it('should render todo text', () => {
@@ -19,6 +22,7 @@ describe('TodoItem', () => {
         onToggle={vi.fn()}
         onDelete={vi.fn()}
         onEdit={vi.fn()}
+        labels={labels}
       />
     )
 
@@ -33,6 +37,7 @@ describe('TodoItem', () => {
         onToggle={vi.fn()}
         onDelete={vi.fn()}
         onEdit={vi.fn()}
+        labels={labels}
       />
     )
 
@@ -48,6 +53,7 @@ describe('TodoItem', () => {
         onToggle={onToggle}
         onDelete={vi.fn()}
         onEdit={vi.fn()}
+        labels={labels}
       />
     )
 
@@ -63,6 +69,7 @@ describe('TodoItem', () => {
         onToggle={vi.fn()}
         onDelete={onDelete}
         onEdit={vi.fn()}
+        labels={labels}
       />
     )
 
@@ -78,6 +85,7 @@ describe('TodoItem', () => {
         onToggle={vi.fn()}
         onDelete={vi.fn()}
         onEdit={onEdit}
+        labels={labels}
       />
     )
 
@@ -99,6 +107,7 @@ describe('TodoItem', () => {
         onToggle={vi.fn()}
         onDelete={vi.fn()}
         onEdit={onEdit}
+        labels={labels}
       />
     )
 
@@ -119,6 +128,7 @@ describe('TodoItem', () => {
         onToggle={vi.fn()}
         onDelete={vi.fn()}
         onEdit={onEdit}
+        labels={labels}
       />
     )
 

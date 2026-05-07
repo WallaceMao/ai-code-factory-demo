@@ -2,6 +2,9 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 import TodoFilter from './TodoFilter'
+import { translations } from '../i18n'
+
+const labels = translations.zh.filter
 
 describe('TodoFilter', () => {
   it('should render filter buttons', () => {
@@ -12,6 +15,7 @@ describe('TodoFilter', () => {
         activeCount={3}
         completedCount={2}
         onClearCompleted={vi.fn()}
+        labels={labels}
       />
     )
 
@@ -30,6 +34,7 @@ describe('TodoFilter', () => {
         activeCount={1}
         completedCount={0}
         onClearCompleted={vi.fn()}
+        labels={labels}
       />
     )
 
@@ -48,6 +53,7 @@ describe('TodoFilter', () => {
         activeCount={1}
         completedCount={2}
         onClearCompleted={vi.fn()}
+        labels={labels}
       />
     )
 
@@ -62,6 +68,7 @@ describe('TodoFilter', () => {
         activeCount={1}
         completedCount={0}
         onClearCompleted={vi.fn()}
+        labels={labels}
       />
     )
 
@@ -77,6 +84,7 @@ describe('TodoFilter', () => {
         activeCount={1}
         completedCount={2}
         onClearCompleted={onClearCompleted}
+        labels={labels}
       />
     )
 
